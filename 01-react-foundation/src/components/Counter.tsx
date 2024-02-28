@@ -9,6 +9,7 @@ const Counter = () => {
     }
     const DecreaseBy = (num: number) => {
         setCount(count - num);
+        
     }
 
   return (
