@@ -2,7 +2,7 @@ import { useState } from "react"
 
 const Counter = () => {
 
-    const [count, setCount] = useState(10)
+    const [count, setCount] = useState<number>(10)
 
     const IncreaseBy = (num: number) => {
         setCount(count + num);
