@@ -2,7 +2,7 @@ import { useCounter } from "../hooks/useCounter";
 
 export const CounterWithHook = () => {
 
-  const {count, IncreaseBy, DecreaseBy} = useCounter({});
+  const {count, IncreaseBy, DecreaseBy} = useCounter({initialValue: 10});
 
   return (
     <>
