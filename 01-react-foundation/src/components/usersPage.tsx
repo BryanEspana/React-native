@@ -21,7 +21,7 @@ const usersPage = () => {
 
     useEffect (() => {
         
-        loadUsers().then( users => setUsers(users));
+        loadUsers().then( setUsers );
     }, [])
     
 
@@ -38,13 +38,12 @@ const usersPage = () => {
             </thead>
             
             <tbody>
-                <tr>
-                    <td>
-                        
-                    </td>
-                    <td>Nombre</td>
-                    <td>Email</td>
-                </tr>
+                {
+                  users.map(user=>(
+                    <UserRow key={user.id} user={user}/>
+                  ))
+                }
+                
             </tbody>
         </table>
     </>
@@ -52,3 +51,20 @@ const usersPage = () => {
 }
 
 export default usersPage
+
+interface Props {
+    user: User;
+}
+
+export const UserRow = ({user}: Props)=>{
+
+    const {avatar, first_name, last_name, email} = user;
+
+    return (
+        <tr key={user.id}>
+        <td> <img style={{width:'50px'}} src={avatar} alt="user Avatar"/></td>
+        <td>{ first_name} {last_name}</td>
+        <td>{email}</td>
+    </tr>
+    )
+}
