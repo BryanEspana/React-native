@@ -1,10 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 
-const loadUsers = async(): Promise<User[]> => {
+const loadUsers = async( page: number = 1): Promise<User[]> => {
     try{
-        const { data } = await axios.get<reqresUserListResponse>('https://reqres.in/api/users');
+        const { data } = await axios.get<reqresUserListResponse>('https://reqres.in/api/users',{
+            params:{
+                page:page
+            }
+        });
         return data.data;
     }catch(error){
         console.log(error)
@@ -16,14 +20,35 @@ const loadUsers = async(): Promise<User[]> => {
 const usersPage = () => {
     
     const [users, setUsers] = useState<User[]>([]);
-
+    const currentPageRef = useRef(1);
 
 
     useEffect (() => {
         
-        loadUsers().then( setUsers );
+        loadUsers(currentPageRef.current).then( setUsers );
     }, [])
     
+    const nextPage = async() =>{
+        currentPageRef.current++;
+        const users = await loadUsers(currentPageRef.current);
+        if(users.length > 0){
+            setUsers(users);
+        }else{
+            currentPageRef.current--;
+        
+        }
+    }
+    const prevPage =  async() =>{
+        if(currentPageRef.current <  1) return;
+        
+        if(currentPageRef.current > 1){
+            currentPageRef.current--;
+            const users = await loadUsers(currentPageRef.current);
+            setUsers(users);
+        }
+        
+
+    }
 
   return (
     <>
@@ -46,6 +71,10 @@ const usersPage = () => {
                 
             </tbody>
         </table>
+        <div>
+        <button onClick={prevPage}>prew</button>
+        <button onClick={nextPage}>next</button>
+        </div>
     </>
   )
 }
