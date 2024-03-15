@@ -9,7 +9,8 @@ import LoginPage from "./components/loginPage"
 
 import '../src/components/index';
 
-import UsersPage from './components/usersPage';
+//import UsersPage from './components/usersPage';
+import UsersPage from './components/formPages';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       {/*<BasicFunctions/> */}
       {/*<CounterWithHook/> */}
       {/*<LoginPage/> */}
+      {/*<UsersPage/> */}
       <UsersPage/>
     </main>
   )
