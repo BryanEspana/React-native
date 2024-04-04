@@ -1,7 +1,9 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet, Pressable, Platform} from 'react-native';
+import { PrimaryButton } from '../components';
+import { Button } from 'react-native-paper';
 
 const CounterScreen = () => {
   
@@ -25,17 +27,15 @@ const CounterScreen = () => {
       <Text style={styles.title}>
         {count}
       </Text>
-      <View style={styles.displayrow}>
-        <Pressable 
+      <View style={styles.displayrow} />
+      {/*      <PrimaryButton label="Incrementar" onPress={increment} onLongPress={reload}/> */}
+      <Button
+        mode="contained"
         onPress={increment}
         onLongPress={reload}
-        style={({pressed})=>[
-          styles.button,
-          pressed && styles.buttonPressed
-        ]}>
-          <Text style={styles.textColor}>Incrementar</Text>
-        </Pressable>
-      </View>
+      >
+        Incrementar
+        </Button>
     </View>
   );
 };
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   buttonPressed:{
-    backgroundColor: '#5F23B9',
+    backgroundColor: Platform.OS === 'android' ? '#5F23B9' : '#6D33C4',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,
