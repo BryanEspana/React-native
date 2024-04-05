@@ -6,8 +6,7 @@ import {SafeAreaView} from 'react-native';
 //import HelloWorldScreen from './src/presentation/pages/HelloWorldScreen';
 //import CounterScreen from './src/presentation/pages/CounterScreen';
 import { PaperProvider } from 'react-native-paper';
-import CounterM3Screen from './src/presentation/pages/CounterM3Screen';
-
+import { DimensionScreen, HomeworkScreen } from './src/presentation/pages';
 import IonIcon  from 'react-native-vector-icons/Ionicons';
 
 export const App = () => {
@@ -20,7 +19,9 @@ export const App = () => {
       <SafeAreaView style={{flex: 1}}>
         {/* <HelloWorldScreen name= 'Bryan Carlos España'/> */}
         {/*<CounterScreen/>*/}
-        <CounterM3Screen/>
+        {/*<CounterM3Screen/>*/}
+        {/*<DimensionScreen/>*/}
+        <HomeworkScreen/>
       </SafeAreaView>
     </PaperProvider>
   );
